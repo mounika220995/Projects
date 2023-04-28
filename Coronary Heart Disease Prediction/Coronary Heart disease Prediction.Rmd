@@ -1,0 +1,124 @@
+---
+title: "Coronary Heart Disease Prediction"
+author: "Mounika Yallamandhala"
+date: "2023-04-28"
+output: pdf_document
+---
+
+# Importing the data set
+
+```{r setup}
+train = read.csv("D:/MS/Michigan/Courses/Business analytics problem solving ITM 883/Project/train_data CV.csv")
+test = read.csv("D:/MS/Michigan/Courses/Business analytics problem solving ITM 883/Project/test_data CV.csv")
+train_quan_vars <- subset(train, select=c(sysBP, education, age, cigsPerDay, totChol, diaBP, BMI, heartRate, glucose))
+round(cor(train_quan_vars, use="pairwise.complete.obs"), 2)
+summary(train)
+```
+
+
+# Removing Missing values in the data
+
+```{r}
+missing_values = colSums(is.na(train))
+print(missing_values)
+train = na.omit(train)
+sum(is.na(train))
+
+missing_values_test = colSums(is.na(test))
+print(missing_values_test)
+test = na.omit(test)
+sum(is.na(test))
+```
+
+
+# Target variable distribution
+
+```{r}
+freq = table(train$TenYearCHD)
+perc = prop.table(freq)
+my_colors <- c("green", "red")
+my_labels <- c("0", "1")
+pie(perc,labels = paste0(round(perc*100), "%"), col = my_colors, main = "TenYearCHD Binary Variable")
+legend("topright", legend = my_labels, fill = my_colors)
+```
+
+
+# Removing id column from both train and test data set
+
+```{r}
+train = train[,-1]
+test = test[,-1]
+dim(train)
+dim(test)
+```
+
+
+# Visualizing the data based on independent variables
+
+```{r}
+library(ggplot2)
+ggplot(data=train) + geom_smooth(aes(x=BMI, y=TenYearCHD), method="glm",
+                                 method.args = list(family = "binomial")) + 
+  stat_summary(data=train, aes(x=round(BMI,-1), y=TenYearCHD), fun=mean, geom="point") +
+  scale_y_continuous(labels = scales::percent_format()) + 
+  theme_bw()
+
+ggplot(data=train) + geom_smooth(aes(x=age, y=TenYearCHD), method="glm",
+                                 method.args = list(family = "binomial")) + 
+  stat_summary(data=train, aes(x=age, y=TenYearCHD), fun=mean, geom="point") +
+  scale_y_continuous(labels = scales::percent_format()) + 
+  theme_bw()
+```
+
+
+# Logistic Regression Model to predict dependent variable TenYearCHD using Age,Prevalent Stroke,  Prevalent Hyp, diaBP, BMI as independent variables
+
+```{r}
+model2 = glm(TenYearCHD ~ age + prevalentStroke + prevalentHyp + diaBP + BMI, data = train,
+             family=binomial(link="logit"))
+summary(model2)
+
+library(pROC)
+Predicted_prob = predict(model2, data=train, type="response")
+ROC = roc(train$TenYearCHD,Predicted_prob)
+plot(ROC)
+```
+
+
+# Finding best cut-off value
+
+```{r}
+coords(ROC,"best")
+table(train$TenYearCHD)
+ROC
+```
+
+
+# Confusion matrix
+
+```{r}
+threshold = 0.16
+predicted_label <- ifelse(Predicted_prob > threshold , 1, 0)
+actual_label <- train$TenYearCHD
+confusion_matrix <- table(predicted_label, actual_label)
+print(confusion_matrix)
+```
+
+
+# Calculate accuracy
+
+```{r}
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+cat("Accuracy:", accuracy, "\n")
+```
+
+
+# Calculate precision and recall
+
+```{r}
+precision <- confusion_matrix[2,2] / sum(confusion_matrix[,2])
+recall <- confusion_matrix[2,2] / sum(confusion_matrix[2,])
+cat("Precision:", precision, "\n")
+cat("Recall:", recall, "\n")
+```
+

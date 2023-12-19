@@ -1,10 +1,10 @@
-Introduction
+**Introduction**
 
 In this comprehensive analysis, we delved into the Drug Review Dataset sourced from the UCI Machine Learning Repository, comprising 215063 entries with seven distinct features. Our primary objective is to predict the condition based on user reviews. This report outlines our roadmap, beginning with data exploration and preprocessing, followed by feature engineering, to ultimately develop a robust model capable of predicting conditions from user reviews. Through this endeavor, we aim to provide valuable insights into the factors influencing user satisfaction in the realm of pharmaceutical reviews.
 
-Methodology
+**Methodology**
 
-Exploratory Data Analysis
+**Exploratory Data Analysis**
 Exploratory data analysis (EDA) is performed to gain a comprehensive understanding of the dataset. Through this analysis, we successfully pinpointed the top 10 prevalent medical conditions, explored the distribution of ratings, and delved into the daily review trends over time.
 
 Data Preprocessing
@@ -17,7 +17,7 @@ Topic Modelling
 In our exploration of user reviews related to the top 10 medical conditions, we utilized SpaCy and Gensim libraries to implement an LDA model. This facilitated the extraction of five dominant topics, shedding light on nuanced themes within the dataset. The resulting structured topics offer valuable insights into prevalent aspects of patient/user experiences, enhancing the interpretability of the drug review corpus.
 
 
-Key Takeaways
+**Key Takeaways**
 
 • Sentiment Analysis – Observed high frequency of neutral reviews.
 • Identified five dominant topics using successful topic modeling techniques.
@@ -26,7 +26,7 @@ Key Takeaways
 
 
 
-Future Scope
+**Future Scope**
 
 • Explore Deep learning, ensemble methods to further optimize the predictive model.
 • Real-Time drug suggestions via Virtual Medical Assistant.
@@ -35,12 +35,12 @@ Future Scope
 
 
 
-Dataset we used
+**Dataset**
 
 “Kaggle UCI ML Drug Review dataset”                  https://www.kaggle.com/datasets/jessicali9530/kuc-hackathon-winter-2018
 
 
-References
+**References**
 We leveraged insights from a variety of Kaggle notebooks as valuable references throughout the progression of our project.
 
 

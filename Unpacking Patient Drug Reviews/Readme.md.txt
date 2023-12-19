@@ -19,25 +19,25 @@ In our exploration of user reviews related to the top 10 medical conditions, we 
 
 Key Takeaways
 
-•	Sentiment Analysis – Observed high frequency of neutral reviews.
-•	Identified five dominant topics using successful topic modeling techniques.
-•	Evaluated Logistic Regression, Random Forest, and XGBoost models for predicting user 	conditions based on user reviews.
-•	Network analysis of condition – drug relationships.
+• Sentiment Analysis – Observed high frequency of neutral reviews.
+• Identified five dominant topics using successful topic modeling techniques.
+• Evaluated Logistic Regression, Random Forest, and XGBoost models for predicting user 	conditions based on user reviews.
+• Network analysis of condition – drug relationships.
 
 
 
 Future Scope
 
-•	Explore Deep learning, ensemble methods to further optimize the predictive model.
-•	Real-Time drug suggestions via Virtual Medical Assistant.
-•	Real-Time integration of reviews for continuous monitoring to improve the quality of the 	content of reviews.
+• Explore Deep learning, ensemble methods to further optimize the predictive model.
+• Real-Time drug suggestions via Virtual Medical Assistant.
+• Real-Time integration of reviews for continuous monitoring to improve the quality of the content of reviews.
 
 
 
 
 Dataset we used
 
-“Kaggle UCI ML Drug Review dataset”                        https://www.kaggle.com/datasets/jessicali9530/kuc-hackathon-winter-2018
+“Kaggle UCI ML Drug Review dataset”                  https://www.kaggle.com/datasets/jessicali9530/kuc-hackathon-winter-2018
 
 
 References
